@@ -1,8 +1,10 @@
 import logic.*;
+import logic.my.*;
+import models.my.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import models.*;
+import java.lang.Object;
 import java.util.Scanner;
 
 public class Main {
@@ -12,20 +14,22 @@ public class Main {
 //        HibernateUtil.shutdown();
 
         SessionFactory sessionFactory = new Configuration()
+                .addAnnotatedClass(Company.class)
+                .addAnnotatedClass(Company_Service.class)
+                .addAnnotatedClass(Service.class)
+                .addAnnotatedClass(Service_Material.class)
                 .addAnnotatedClass(Material.class)
-                .addAnnotatedClass(Operation.class)
-                .addAnnotatedClass(Orders.class)
-                .addAnnotatedClass(Product.class)
-                .addAnnotatedClass(Status_Product.class)
+                .addAnnotatedClass(Zdanie.class)
+                .addAnnotatedClass(Contract.class)
                 .buildSessionFactory();
 
         boolean isWork = true;
         while(isWork){
-            System.out.println("Insert 1 to work with materials");
-            System.out.println("Insert 2 to work with operations");
-            System.out.println("Insert 3 to work with orders");
-            System.out.println("Insert 4 to work with products");
-            System.out.println("Insert 5 to work with statuses");
+            System.out.println("Insert 1 to work with companies");
+            System.out.println("Insert 2 to work with contracts");
+            System.out.println("Insert 3 to work with materials");
+            System.out.println("Insert 4 to work with objects");
+            System.out.println("Insert 5 to work with services");
             System.out.println("Insert 6 to exit");
             System.out.println("Insert 7 to see the main request");
 
@@ -34,24 +38,24 @@ public class Main {
 
             switch (i) {
                 case 1 -> {
+                    CompanyLogic companyLogic = new CompanyLogic();
+                    companyLogic.work(sessionFactory);
+                }
+                case 2 -> {
+                    ContractLogic contractLogic = new ContractLogic();
+                    contractLogic.work(sessionFactory);
+                }
+                case 3 -> {
                     MaterialLogic materialLogic = new MaterialLogic();
                     materialLogic.work(sessionFactory);
                 }
-                case 2 -> {
-                    OperationLogic operationLogic = new OperationLogic();
-                    operationLogic.work(sessionFactory);
-                }
-                case 3 -> {
-                    OrderLogic orderLogic = new OrderLogic();
-                    orderLogic.work(sessionFactory);
-                }
                 case 4 -> {
-                    ProductLogic productLogic = new ProductLogic();
-                    productLogic.work(sessionFactory);
+                    ObjectLogic objectLogic = new ObjectLogic();
+                    objectLogic.work(sessionFactory);
                 }
                 case 5 -> {
-                    StatusProductLogic statusProductLogic = new StatusProductLogic();
-                    statusProductLogic.work(sessionFactory);
+                    ServiceLogic serviceLogic = new ServiceLogic();
+                    serviceLogic.work(sessionFactory);
                 }
                 case 6 -> isWork = false;
                 case 7 -> {

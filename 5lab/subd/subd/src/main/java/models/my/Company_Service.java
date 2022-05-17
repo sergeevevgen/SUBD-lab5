@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "company_service_int", schema = "public", catalog = "newDb")
@@ -17,11 +14,11 @@ import javax.persistence.Table;
 public class Company_Service {
 
     @Id
-    @Column(name = "companycompany_id")
+    @Column(name = "company_id_company")
     private long companyId;
 
-    @Id
-    @Column(name = "serviceservice_id")
+    @Basic
+    @Column(name = "service_id_service")
     private long serviceId;
 
     @Column(name = "price_for_unit_measurement", nullable = false)

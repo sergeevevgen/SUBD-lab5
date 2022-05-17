@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Object {
+public class Zdanie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "object_id")
@@ -29,7 +29,7 @@ public class Object {
     @Column(name = "build_date", nullable = false)
     private Date build_date;
 
-    public Object(String address, String object_type, Date build_date)
+    public Zdanie(String address, String object_type, Date build_date)
     {
         this.address = address;
         this.object_type = object_type;

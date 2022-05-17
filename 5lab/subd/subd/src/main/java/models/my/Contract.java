@@ -22,7 +22,7 @@ public class Contract {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "object_id")
-    private Object object;
+    private Zdanie zdanie;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "service_id")
@@ -44,8 +44,8 @@ public class Contract {
     @Column(name = "final_price", nullable = false)
     private float final_price;
 
-    public Contract(Object object, Service service, Company company, Date date_of_conclusion, Date date_of_end, float volume, float final_price) {
-        this.object = object;
+    public Contract(Zdanie zdanie, Service service, Company company, Date date_of_conclusion, Date date_of_end, float volume, float final_price) {
+        this.zdanie = zdanie;
         this.service = service;
         this.company = company;
         this.date_of_conclusion = date_of_conclusion;
@@ -57,6 +57,6 @@ public class Contract {
     @Override
     public String toString() {
         return String.format("\nid: %d || ObjectId: %d  || ServiceId: %d  || CompanyId: %d  || Date_of_conclusion: %s || Date_of_end: %s || Volume: %f || Final_price: %f",
-                id, object.getId(), service.getId(), company.getId(), date_of_conclusion, date_of_end, volume, final_price);
+                id, zdanie.getId(), service.getId(), company.getId(), date_of_conclusion, date_of_end, volume, final_price);
     }
 }

@@ -1,8 +1,6 @@
 package logic.my;
 
-import models.Material;
-import models.my.Company;
-import models.my.Object;
+import models.my.Zdanie;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -35,73 +33,73 @@ public class ObjectLogic {
     private void create(Session session) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert object address");
-        String address = scanner.next();
+        String address = scanner.nextLine();
         System.out.println("Insert object object_type");
-        String object_type = scanner.next();
+        String object_type = scanner.nextLine();
         System.out.println("Insert build date");
-        String build_date = scanner.next();
+        String build_date = scanner.nextLine();
         java.util.Date newDate = new java.util.Date(build_date);
         java.sql.Date sqlDate = new java.sql.Date(newDate.getTime());
-        Object object = new Object(address, object_type, sqlDate);
-        session.save(object);
+        Zdanie zdanie = new Zdanie(address, object_type, sqlDate);
+        session.save(zdanie);
     }
 
     private void read(Session session) {
-        List<Object> objects = session.createQuery("SELECT o from Object o", Object.class).getResultList();
-        System.out.println(objects);
+        List<Zdanie> zdanies = session.createQuery("SELECT o from Zdanie o", Zdanie.class).getResultList();
+        System.out.println(zdanies);
     }
 
     private void update(Session session) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert object id");
-        int id = scanner.nextInt();
+        var id = scanner.nextLong();
 
         System.out.println("Insert 1 to change address");
         int choice = scanner.nextInt();
         if(choice == 1)
         {
             System.out.println("Insert object name");
-            String address = scanner.next();
-            Object object = session.get(Object.class, id);
-            object.setAddress(address);
-            session.save(object);
+            String address = scanner.nextLine();
+            Zdanie zdanie = session.get(Zdanie.class, id);
+            zdanie.setAddress(address);
+            session.save(zdanie);
         }
 
         System.out.println("Insert 2 to change object_type");
         choice = scanner.nextInt();
         if(choice == 2) {
             System.out.println("Insert object address");
-            String object_type = scanner.next();
-            Object object = session.get(Object.class, id);
-            object.setObject_type(object_type);
-            session.save(object);
+            String object_type = scanner.nextLine();
+            Zdanie zdanie = session.get(Zdanie.class, id);
+            zdanie.setObject_type(object_type);
+            session.save(zdanie);
         }
 
         System.out.println("Insert 3 to change build_date");
         choice = scanner.nextInt();
         if(choice == 3) {
             System.out.println("Insert object build date");
-            Object object = session.get(Object.class, id);
+            Zdanie zdanie = session.get(Zdanie.class, id);
             String build_date = scanner.next();
             java.util.Date newDate = new java.util.Date(build_date);
             java.sql.Date sqlDate = new java.sql.Date(newDate.getTime());
-            object.setBuild_date(sqlDate);
-            session.save(object);
+            zdanie.setBuild_date(sqlDate);
+            session.save(zdanie);
         }
     }
     private void delete(Session session) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert object id");
-        int id = scanner.nextInt();
-        Object object = session.get(Object.class, id);
-        session.delete(object);
+        var id = scanner.nextLong();
+        Zdanie zdanie = session.get(Zdanie.class, id);
+        session.delete(zdanie);
     }
 
     private void filterRead(Session session) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert object address");
-        String address = scanner.next();
-        List<Object> objects = session.createQuery("SELECT o from Object o WHERE address = \'" + address + "\'", Object.class).getResultList();
-        System.out.println(objects);
+        String address = scanner.nextLine();
+        List<Zdanie> zdanies = session.createQuery("SELECT o from Zdanie o WHERE address = \'" + address + "\'", Zdanie.class).getResultList();
+        System.out.println(zdanies);
     }
 }

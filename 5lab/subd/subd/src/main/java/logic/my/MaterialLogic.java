@@ -34,11 +34,11 @@ public class MaterialLogic {
     private void create(Session session) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert material name");
-        String name = scanner.next();
+        String name = scanner.nextLine();
         System.out.println("Insert material price");
         float price = scanner.nextFloat();
         System.out.println("Insert material unit_measurement");
-        String unit_measurement = scanner.next();
+        String unit_measurement = scanner.nextLine();
         Material material = new Material(name, price, unit_measurement);
         session.save(material);
     }
@@ -50,15 +50,15 @@ public class MaterialLogic {
 
     private void update(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Insert company id");
-        int id = scanner.nextInt();
+        System.out.println("Insert material id");
+        var id = scanner.nextLong();
 
         System.out.println("Insert 1 to change name");
         int choice = scanner.nextInt();
         if(choice == 1)
         {
             System.out.println("Insert material name");
-            String name = scanner.next();
+            String name = scanner.nextLine();
             Material material = session.get(Material.class, id);
             material.setName(name);
             session.save(material);
@@ -78,7 +78,7 @@ public class MaterialLogic {
         choice = scanner.nextInt();
         if(choice == 3) {
             System.out.println("Insert material unit measurement");
-            String unit_measurement = scanner.next();
+            String unit_measurement = scanner.nextLine();
             Material material = session.get(Material.class, id);
             material.setUnit_measurement(unit_measurement);
             session.save(material);
@@ -87,7 +87,7 @@ public class MaterialLogic {
     private void delete(Session session) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert material id");
-        int id = scanner.nextInt();
+        var id = scanner.nextLong();
         Material material = session.get(Material.class, id);
         session.delete(material);
     }
@@ -95,8 +95,8 @@ public class MaterialLogic {
     private void filterRead(Session session) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert material name");
-        String name = scanner.next();
-        List<Material> materials = session.createQuery("SELECT m from Material m WHERE name = \'" + name + "\'", Material.class).getResultList();
+        String name = scanner.nextLine();
+        List<Material> materials = session.createQuery("SELECT m from Material m WHERE name = '" + name + "'", Material.class).getResultList();
         System.out.println(materials);
     }
 }

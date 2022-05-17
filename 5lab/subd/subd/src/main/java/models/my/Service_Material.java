@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "service_material_int", schema = "public", catalog = "newDb")
@@ -19,7 +16,7 @@ public class Service_Material {
     @Column(name = "serviceservice_id")
     private long serviceId;
 
-    @Id
+    @Basic
     @Column(name = "materialmaterial_id")
     private long materialId;
 
