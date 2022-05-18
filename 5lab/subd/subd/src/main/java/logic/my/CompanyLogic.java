@@ -135,9 +135,3 @@ public class CompanyLogic {
         System.out.println(companies);
     }
 }
-
-/*SELECT
-C.Name, CON.Contract_ID, CON.Date_Of_End, CON.Final_Price
-FROM COMPANY C, CONTRACT CON
-WHERE C.Company_ID = CON.Company_ID AND CON.Date_Of_Conclusion > '2022-10-10' ORDER BY CON.Final_Price;
-*/

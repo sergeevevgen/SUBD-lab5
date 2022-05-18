@@ -1,5 +1,6 @@
 package logic.my;
 
+import models.my.Contract;
 import models.my.Zdanie;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -92,6 +93,11 @@ public class ObjectLogic {
         System.out.println("Insert object id");
         var id = scanner.nextLong();
         Zdanie zdanie = session.get(Zdanie.class, id);
+        var contracts = session.createQuery("SELECT c FROM Contract c WHERE zdanie = \'" + id + "\'", Contract.class).getResultList();
+        for (var contract : contracts) {
+            contract.setZdanie(null);
+            session.saveOrUpdate(contract);
+        }
         session.delete(zdanie);
     }
 

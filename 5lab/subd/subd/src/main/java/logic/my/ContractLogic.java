@@ -139,48 +139,48 @@ public class ContractLogic {
             case 1 -> {
                 System.out.println("Insert object id");
                 var objectId = scanner.nextLong();
-                contracts = session.createQuery("SELECT c from Contract c where zdanie = \'"
-                        + objectId + "\'", Contract.class).getResultList();
+                contracts = session.createQuery("SELECT c from Contract c where zdanie = '"
+                        + objectId + "'", Contract.class).getResultList();
             }
             case 2 -> {
                 System.out.println("Insert company id");
                 var companyId = scanner.nextLong();
-                contracts = session.createQuery("SELECT c from Contract c where company = \'"
-                        + companyId + "\'", Contract.class).getResultList();
+                contracts = session.createQuery("SELECT c from Contract c where company = '"
+                        + companyId + "'", Contract.class).getResultList();
             }
             case 3 -> {
                 System.out.println("Insert service id");
                 var serviceId = scanner.nextLong();
-                contracts = session.createQuery("SELECT c from Contract c where service = \'"
-                        + serviceId + "\'", Contract.class).getResultList();
+                contracts = session.createQuery("SELECT c from Contract c where service = '"
+                        + serviceId + "'", Contract.class).getResultList();
             }
             case 4 -> {
                 System.out.println("Insert date of conclusion");
                 String date = scanner.next();
                 java.util.Date myDate = new java.util.Date(date);
                 java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
-                contracts = session.createQuery("SELECT c from Contract c where date_of_conclusion = \'"
-                        + sqlDate + "\'", Contract.class).getResultList();
+                contracts = session.createQuery("SELECT c from Contract c where date_of_conclusion = '"
+                        + sqlDate + "'", Contract.class).getResultList();
             }
             case 5 -> {
                 System.out.println("Insert date of end");
                 String date = scanner.next();
                 java.util.Date myDate = new java.util.Date(date);
                 java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
-                contracts = session.createQuery("SELECT c from Contract c where date_of_end = \'"
-                        + sqlDate + "\'", Contract.class).getResultList();
+                contracts = session.createQuery("SELECT c from Contract c where date_of_end = '"
+                        + sqlDate + "'", Contract.class).getResultList();
             }
             case 6 -> {
                 System.out.println("Insert volume");
                 float volume = scanner.nextFloat();
-                contracts = session.createQuery("SELECT c from Contract c where volume = \'"
-                        + volume + "\'", Contract.class).getResultList();
+                contracts = session.createQuery("SELECT c from Contract c where volume = '"
+                        + volume + "'", Contract.class).getResultList();
             }
             case 7 -> {
                 System.out.println("Insert final price");
                 float final_price = scanner.nextFloat();
-                contracts = session.createQuery("SELECT c from Contract c where final_price = \'"
-                        + final_price + "\'", Contract.class).getResultList();
+                contracts = session.createQuery("SELECT c from Contract c where final_price = '"
+                        + final_price + "'", Contract.class).getResultList();
             }
         }
         System.out.println(contracts);

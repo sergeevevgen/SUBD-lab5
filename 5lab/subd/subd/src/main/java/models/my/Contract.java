@@ -20,7 +20,7 @@ public class Contract {
     @Column(name = "contract_id")
     private long id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "object_id")
     private Zdanie zdanie;
 
@@ -56,7 +56,11 @@ public class Contract {
 
     @Override
     public String toString() {
-        return String.format("\nid: %d || ObjectId: %d  || ServiceId: %d  || CompanyId: %d  || Date_of_conclusion: %s || Date_of_end: %s || Volume: %f || Final_price: %f",
-                id, zdanie.getId(), service.getId(), company.getId(), date_of_conclusion, date_of_end, volume, final_price);
+        if (zdanie != null) {
+            return String.format("\nid: %d || ObjectId: %d  || ServiceId: %d  || CompanyId: %d  || Date_of_conclusion: %s || Date_of_end: %s || Volume: %f || Final_price: %f",
+                    id, zdanie.getId(), service.getId(), company.getId(), date_of_conclusion, date_of_end, volume, final_price);
+        }
+        return String.format("\nid: %d || ObjectId: null  || ServiceId: %d  || CompanyId: %d  || Date_of_conclusion: %s || Date_of_end: %s || Volume: %f || Final_price: %f",
+                id, service.getId(), company.getId(), date_of_conclusion, date_of_end, volume, final_price);
     }
 }
